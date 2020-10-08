@@ -1,2 +1,2 @@
-to extract the FRENSIE and MCNP data for a estimator 1 (current), run `./driver --rendezvous_file="sphere_rendezvous_10.xml" --estimator_id=1 --entity_id=1 --mcnp_file=sphere_mcnp.o --mcnp_file_start=1202 --mcnp_file_end=1302 --current`
-to extract the FRENSIE and MCNP data for a estimator 2 (flux) , run `./driver --rendezvous_file="sphere_rendezvous_10.xml" --estimator_id=1 --entity_id=1 --mcnp_file=sphere_mcnp.o --mcnp_file_start=1202 --mcnp_file_end=1302 --flux`
+to extract the FRENSIE and MCNP data for a estimator 1 (current), run `./driver.py --rendezvous_file="sphere_rendezvous_10.xml" --estimator_id=1 --entity_id=1 --mcnp_file=sphere_mcnp.o --mcnp_file_start=1202 --mcnp_file_end=1302 --current`
+to extract the FRENSIE and MCNP data for a estimator 2 (flux) , run `./drive.py --rendezvous_file="sphere_rendezvous_10.xml" --estimator_id=1 --entity_id=1 --mcnp_file=sphere_mcnp.o --mcnp_file_start=1202 --mcnp_file_end=1302 --flux`
