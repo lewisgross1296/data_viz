@@ -11,19 +11,13 @@ import PyFrensie.MonteCarlo.Event as Event
 import PyFrensie.MonteCarlo.Manager as Manager
 from spectrum_plot_tools import plotSpectralDataWithErrors
 
-def plotSphereSimulationSpectrum( rendezvous_file,
-                                  estimator_id,
-                                  entity_id,
-                                  mcnp_file,
-                                  mcnp_file_start,
-                                  mcnp_file_end,
-                                  is_a_current,
-                                  top_ylims = None,
-                                  bottom_ylims = None,
-                                  legend_pos = None ):
-
-    # Set the database path
-    Collision.FilledGeometryModel.setDefaultDatabasePath( os.environ['DATABASE_PATH'] )
+def extract(  rendezvous_file,
+              estimator_id,
+              entity_id,
+              mcnp_file,
+              mcnp_file_start,
+              mcnp_file_end,
+              is_a_current):
     
     # Reload the simulation
     manager = Manager.ParticleSimulationManagerFactory( rendezvous_file ).getManager()
@@ -46,30 +40,18 @@ def plotSphereSimulationSpectrum( rendezvous_file,
         mcnp_bin_data["e_up"].append( float(split_line[0]) )
         mcnp_bin_data["mean"].append( float(split_line[1]) )
         mcnp_bin_data["re"].append( float(split_line[2]) )
-        
-    output_file_name = "h1_sphere_"
-    output_file_names = []
 
-    if is_a_current:
-        output_file_names.append( output_file_name + "current.eps" )
-        output_file_names.append( output_file_name + "current.png" )
-        data_type = "Current"
-    else:
-        output_file_names.append( output_file_name + "flux.eps" )
-        output_file_names.append( output_file_name + "flux.png" )
-        data_type = "Flux"
-
-
-
-    # Plot the data
-#    plotSpectralDataWithErrors( "FRENSIE",
-#                                entity_bin_data,
-#                                "MCNP6",
-#                                mcnp_bin_data,
-#                                data_type,
-#                                True,
-#                                per_lethargy = is_a_current,
-#                                top_ylims = top_ylims,
-#                                bottom_ylims = bottom_ylims,
-#                                legend_pos = legend_pos,
-#                                output_plot_names = output_file_names )
+    if(is_a_current):
+        with open('current_comparison.txt', 'w') as f: 
+            print(entity_bin_data) 
+            print('\n')
+            print(mcnp_bin_data, file=f)
+    else
+        with open('flux_comparison.txt', 'w') as f:  
+            print(entity_bin_data) 
+            print('\n')
+            print(mcnp_bin_data, file=f)
+            
+    # ensure file is closed
+    print('file is closed? ')
+    print(f.close)
