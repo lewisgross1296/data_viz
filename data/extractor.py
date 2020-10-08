@@ -18,6 +18,14 @@ def extract(  rendezvous_file,
               mcnp_file_start,
               mcnp_file_end,
               is_a_current):
+
+    # Activate just-in-time initialization to prevent automatic loading of the
+    # geometry and data tables
+    Utility.activateJustInTimeInitialization()
+
+    # tried adding this, it was in some other scripts, but it didn't help
+    # Set the database path
+    # Collision.FilledGeometryModel.setDefaultDatabasePath( os.environ['DATABASE_PATH'] )
     
     # Reload the simulation
     manager = Manager.ParticleSimulationManagerFactory( rendezvous_file ).getManager()
@@ -45,13 +53,12 @@ def extract(  rendezvous_file,
         with open('current_comparison.txt', 'w') as f: 
             print(entity_bin_data) 
             print('\n')
-            print(mcnp_bin_data, file=f)
-    else
+            print(mcnp_bin_data)
+    else:
         with open('flux_comparison.txt', 'w') as f:  
             print(entity_bin_data) 
             print('\n')
-            print(mcnp_bin_data, file=f)
-            
+            print(mcnp_bin_data)
     # ensure file is closed
     print('file is closed? ')
     print(f.close)

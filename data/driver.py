@@ -17,7 +17,7 @@ if __name__ == "__main__":
                       help="the mcnp output file to load")
     parser.add_option("--mcnp_file_start", type="int", dest="mcnp_file_start",
                       help="the mcnp output file start line")
-    parser.add_option("--mcnp_file_start", type="int", dest="mcnp_file_start",
+    parser.add_option("--mcnp_file_end", type="int", dest="mcnp_file_end",
                       help="the mcnp output file start line")
     parser.add_option("--current", action="store_true", dest="is_a_current",
                       help="the data corresponds to a current")
@@ -32,4 +32,4 @@ if __name__ == "__main__":
               options.mcnp_file,
               options.mcnp_file_start,
               options.mcnp_file_end,
-              options.is_a_current):
+              options.is_a_current)
